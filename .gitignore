@@ -1,0 +1,18 @@
+@"
+# venv / caches
+.venv/
+__pycache__/
+*.pyc
+
+# env/segredos locais
+.env
+.env.*
+*.env
+
+# artefatos gerados
+*.xlsx
+*.csv
+xmls/
+pdf_email/
+logs/
+"@ | Out-File -Encoding utf8 .gitignore
