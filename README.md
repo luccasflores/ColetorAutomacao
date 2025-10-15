@@ -1,106 +1,110 @@
-# 🧠 Coletor CNAE – Autenticator M&H Soluções
-
-Sistema automatizado para **coleta de empresas por segmento (CNAE)** com autenticação e licenciamento integrado.  
-Permite extrair CNPJs, nomes, endereços, e contatos diretamente de fontes públicas de dados empresariais, salvando tudo em planilhas Excel prontas para prospecção.
+# ⚙️ Coletor Automação  
+**Sistema de automação em Python para coleta de dados empresariais e geração de relatórios — distribuído como executável (.exe)**
 
 ---
 
-## 🖼️ Exemplo de Entrada e Resultados
+### 📖 Descrição  
+O **Coletor Automação** é um sistema desenvolvido em **Python** e empacotado em **.exe** através do **PyInstaller**, permitindo execução direta em Windows sem necessidade de instalar dependências.  
+Ele automatiza a coleta de dados em portais públicos, organiza as informações em planilhas e gera relatórios padronizados com total rastreabilidade.
 
-### Entrada (terminal)
-![Input do sistema](docs/input.png)
-
-### Resultados Gerados
-| Resultado 1 | Resultado 2 | Resultado 3 |
-|--------------|--------------|--------------|
-| ![Resultado 1](docs/Resultado1.png) | ![Resultado 2](docs/Resultado2.png) | ![Resultado 3](docs/Resultado3.png) |
+Projetado para uso corporativo, o sistema oferece uma interface simples e operação 100% autônoma, reduzindo significativamente o tempo gasto em consultas manuais.
 
 ---
 
-## ⚙️ Funcionalidades Principais
-
-### 🔐 Licenciamento Automático (Hotmart)
-- Ativação vinculada à máquina via **APPDATA** (`license.json`)  
-- Comunicação com o servidor remoto **Autenticator M&H**  
-- Verificação e revalidação automática a cada execução  
-- Suporte a ativação manual via chave ou automática via e-mail da compra  
-
-### 🏢 Coleta de Empresas por CNAE
-- Entrada no formato:  
-  `6920-6/01 - Atividades de contabilidade`
-- Geração automática do link e nome do arquivo  
-- Extração de dados completos por empresa:
-  - **CNPJ**
-  - **Nome Fantasia**
-  - **Atividade Principal**
-  - **Data de Início**
-  - **Situação Cadastral**
-  - **Endereço**
-  - **Estado**
-  - **Telefone / E-mail**
-
-### ⚡ Execução Paralela (Multithread)
-- Uso de **ThreadPoolExecutor** para processamento simultâneo  
-- Divisão automática de páginas em 5 threads  
-- Salvamento incremental em `.xlsx` durante a coleta  
+### ⚙️ Principais funcionalidades  
+- 🔍 Coleta automatizada de dados empresariais (CNPJ, CNAE, endereço, situação cadastral etc.)  
+- 📦 Extração e padronização de informações em planilhas Excel  
+- 🧠 Integração com APIs e uso de **Pandas** para tratamento de dados  
+- ⚡ Execução multi-thread para maior desempenho  
+- 🪶 Logs detalhados de execução e resultados exportáveis  
+- 💻 Distribuição em formato `.exe`, executável em qualquer máquina Windows  
 
 ---
 
-## 🧩 Tecnologias Utilizadas
-
-| Tecnologia | Função |
-|-------------|--------|
-| **Python 3.11+** | Linguagem principal |
-| **Playwright** | Automação de scraping |
-| **Pandas + OpenPyXL** | Manipulação e gravação de planilhas |
-| **Requests** | Comunicação com servidor de ativação |
-| **ThreadPoolExecutor** | Execução paralela |
-| **UUID / JSON / OS** | Gestão de licença e identificação |
-
----
-
-## 📁 Estrutura do Projeto
-
-ColetorCNAE/
-│
-├── coletor_cnae.py # Script principal
-├── requirements.txt # Dependências do projeto
-├── README.md # Documentação principal
-│
-├── docs/ # Screenshots e exemplos
-│ ├── input.png
-│ ├── Resultado1.png
-│ ├── Resultado2.png
-│ └── Resultado3.png
-│
-└── data/ # Resultados e logs
-├── <descricaoCNAE>.xlsx
-└── logs/
-
-
+### 🧠 Tecnologias utilizadas  
+| Categoria | Ferramentas |
+|------------|--------------|
+| **Linguagem** | Python 3.11+ |
+| **Bibliotecas principais** | Playwright, Pandas, OpenPyXL, Regex, Logging |
+| **Empacotamento** | PyInstaller |
+| **Automação e RPA** | Playwright, ThreadPoolExecutor |
+| **Relatórios** | Excel (.xlsx) |
+| **Ambiente de execução** | Windows (standalone executável) |
 
 ---
 
-## 🧠 Fluxo de Execução
+### 🚀 Como executar o projeto  
+O sistema é distribuído como arquivo **`.exe`** pronto para uso.
 
-1️⃣ O usuário executa o script  
-2️⃣ O sistema verifica a licença:
-   - Se válida → continua
-   - Se ausente → solicita o e-mail de compra  
-3️⃣ O sistema ativa automaticamente via servidor Hotmart  
-4️⃣ O usuário informa o **segmento CNAE**  
-5️⃣ O script coleta os dados e salva automaticamente no Excel  
+1. **Baixe o executável** da versão mais recente na aba *Releases* do repositório.  
+2. **Execute o arquivo `ColetorAutomacao.exe`**.  
+3. O sistema iniciará automaticamente e exibirá o progresso da coleta em tempo real.  
+4. Os relatórios e planilhas serão salvos automaticamente na pasta `outputs/`.
 
----
+Caso prefira rodar em modo desenvolvedor, você pode clonar o repositório e executar via Python:
 
-## 🧩 Requisitos
-
-- **Python 3.11+**
-- Instalar dependências:
 
 ```bash
+git clone https://github.com/luccasflores/ColetorAutomacao
+cd ColetorAutomacao
 pip install -r requirements.txt
-playwright install
-| CNPJ               | Nome Fantasia    | Atividade                   | Início     | Situação | Endereço            | Estado | Telefone        | E-mail                                            |
-| ------------------ | ---------------- | --------------------------- | ---------- | -------- | ------------------- | ------ | --------------- | ------------------------------------------------- |
-| 12.345.678/0001-99 | Contábil Floripa | Atividades de contabilidade | 10/05/2018 | Ativa    | Rua das Flores, 123 | SC     | (48) 99999-9999 | [contato@empresa.com](mailto:contato@empresa.com) |
+python coletor.py
+```
+
+🧩 Estrutura do projeto:
+ColetorAutomacao/
+├── coletor.py
+├── docs/
+│   ├── input.png
+│   ├── Resultado1.png
+│   ├── Resultado2.png
+│   ├── Resultado3.png
+├── outputs/
+│   └── resultados.xlsx
+├── build/
+│   └── ColetorAutomacao.exe
+└── requirements.txt
+
+🎥 Demonstração
+
+### 🎥 Demonstração  
+
+**Entrada de dados (tela inicial):**  
+![Tela de entrada](docs/input.png)  
+*Usuário insere parâmetros de busca e inicia a coleta.*
+
+**Resultados gerados automaticamente:**  
+![Resultado 1](docs/Resultado1.png)  
+*Exemplo de planilha gerada após a coleta.*
+
+![Resultado 2](docs/Resultado2.png)  
+*Exibição dos dados coletados com formatação padronizada.*
+
+![Resultado 3](docs/Resultado3.png)  
+*Resumo final da execução e relatório consolidado.*
+
+
+📈 Impacto e resultados
+
+⏱️ Redução de horas de trabalho manual em processos de coleta de dados.
+
+📊 Padronização dos relatórios corporativos em Excel.
+
+🔗 Integração facilitada com sistemas SaaS e CRMs.
+
+🧩 Portabilidade total via .exe, sem necessidade de instalação.
+
+---
+
+### 🧩 Autor  
+**Luccas Flores**  
+💻 Desenvolvedor Python | Especialista em RPA e automação de processos  
+📧 [luccasflores.dev@gmail.com](mailto:luccasflores.dev@gmail.com)  
+🔗 [LinkedIn](https://www.linkedin.com/in/luccas-flores-038757231/)
+
+---
+
+### 📝 Licença  
+Este projeto está sob a **licença MIT** — você pode usar, copiar, modificar e distribuir livremente, desde que mantenha os créditos ao autor original.  
+Para mais detalhes, consulte o arquivo [LICENSE](LICENSE).
+
