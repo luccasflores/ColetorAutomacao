@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "companies-scraper"
+version = "0.1.0"
+description = "Scraper de empresas por segmento (empresasweb) com Playwright async, CLI e export Excel"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "Luccas Flores", email = "luccasflores.dev@gmail.com" }]
+license = { text = "MIT" }
+dependencies = [
+  "playwright>=1.47.0",
+  "pandas>=2.2.0",
+  "openpyxl>=3.1.2",
+  "python-dotenv>=1.0.1",
+  "tenacity>=8.2.3",
+  "tqdm>=4.66.1",
+]
+
+[project.scripts]
+companies-scraper = "companies_scraper.cli:main"

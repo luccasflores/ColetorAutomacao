@@ -1,18 +1,15 @@
-@"
-# venv / caches
+# Python
 .venv/
 __pycache__/
 *.pyc
 
-# env/segredos locais
+# Local env
 .env
-.env.*
-*.env
 
-# artefatos gerados
+# Artefatos
 *.xlsx
 *.csv
-xmls/
-pdf_email/
-logs/
-"@ | Out-File -Encoding utf8 .gitignore
+*.log
+
+# Checkpoints
+.checkpoints/
